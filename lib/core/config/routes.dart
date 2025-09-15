@@ -8,7 +8,7 @@ import 'package:calley/features/settings/presentation/pages/language.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/language',
   routes: [
     GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
     GoRoute(path: '/signup', builder: (context, state) => const SignUp()),

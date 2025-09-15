@@ -30,7 +30,6 @@ class _OTPState extends State<OTP> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(onPressed: () {}),
       body: SafeArea(
         child: BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {

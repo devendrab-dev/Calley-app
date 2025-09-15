@@ -1,5 +1,5 @@
+import 'package:calley/core/config/language.dart';
 import 'package:calley/core/widgets/card.dart';
-import 'package:calley/features/settings/data/languages.dart';
 import 'package:calley/core/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
