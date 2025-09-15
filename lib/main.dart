@@ -1,5 +1,15 @@
+import 'package:calley/core/config/theme.dart';
+import 'package:calley/core/network/api_client.dart';
+import 'package:calley/features/Dashboard/data/data_repository.dart';
+import 'package:calley/features/Dashboard/data/services/data_service.dart';
+import 'package:calley/features/Dashboard/presentation/bloc/list_bloc.dart';
+import 'package:calley/features/authentication/data/auth_repository.dart';
+import 'package:calley/features/authentication/data/services/auth_service.dart';
+import 'package:calley/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
+import 'package:calley/features/authentication/presentation/bloc/login_bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
-import 'routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/config/routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -10,78 +20,26 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: 'Calley App',
-      debugShowCheckedModeBanner: false,
-      routerConfig: appRouter,
-      theme: ThemeData(
-        useMaterial3: true,
-        scaffoldBackgroundColor: Color(0xFFF8FAFC),
-        inputDecorationTheme: InputDecorationTheme(
-          contentPadding: EdgeInsets.symmetric(vertical: 16, horizontal: 12),
-          labelStyle: TextStyle(color: Colors.grey[700], fontSize: 16),
-          hintStyle: TextStyle(color: Colors.grey[500]),
-          errorStyle: TextStyle(color: Colors.redAccent),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.grey),
-          ),
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.blue, width: 2),
-          ),
-          errorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.redAccent, width: 2),
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(color: Colors.redAccent, width: 2),
-          ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              AuthBloc(AuthRepository(AuthService(ApiClient()))),
         ),
-        radioTheme: RadioThemeData(), // TODO:
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        textTheme: const TextTheme(
-          // Headers
-          headlineLarge: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-          headlineMedium: TextStyle(
-            fontSize: 22,
-            fontWeight: FontWeight.w600,
-            color: Colors.black87,
-          ),
-          headlineSmall: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-            color: Colors.black87,
-          ),
-
-          // Paragraph / Body text
-          bodyLarge: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.normal,
-            color: Colors.black87,
-            height: 1.5, // line height for readability
-          ),
-          bodyMedium: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.normal,
-            color: Colors.black87,
-            height: 1.4,
-          ),
-          bodySmall: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.normal,
-            color: Colors.black54,
-          ),
+        BlocProvider(
+          create: (context) =>
+              LoginBloc(AuthRepository(AuthService(ApiClient()))),
         ),
+        BlocProvider(
+          create: (context) =>
+              ListBloc(DataRepository(DataService(ApiClient()))),
+        ),
+      ],
+      child: MaterialApp.router(
+        title: 'Calley App',
+        debugShowCheckedModeBanner: false,
+        routerConfig: appRouter,
+        theme: themeData,
       ),
     );
   }

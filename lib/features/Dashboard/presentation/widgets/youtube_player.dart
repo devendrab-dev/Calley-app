@@ -7,7 +7,7 @@ class YouTube extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final videoId = YoutubePlayer.convertUrlToId(
-      "https://www.youtube.com/watch?v=BBAyRBTfsOU",
+      "https://youtu.be/l36rG4HafMg?si=kzr0hOPkSXeQyRB2",
     );
     YoutubePlayerController controller = YoutubePlayerController(
       initialVideoId: videoId!,

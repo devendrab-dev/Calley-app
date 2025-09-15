@@ -8,17 +8,34 @@ import 'package:calley/features/settings/presentation/pages/language.dart';
 import 'package:go_router/go_router.dart';
 
 final GoRouter appRouter = GoRouter(
-  initialLocation: '/otp',
+  initialLocation: '/login',
   routes: [
     GoRoute(path: '/login', builder: (context, state) => const LoginPage()),
     GoRoute(path: '/signup', builder: (context, state) => const SignUp()),
-    GoRoute(path: '/landing', builder: (context, state) => const LandingPage()),
-    GoRoute(path: '/dashboard', builder: (context, state) => const Dashboard()),
-    GoRoute(path: '/tests', builder: (context, state) => const Tests()),
+    GoRoute(
+      path: '/landing',
+      builder: (context, state) {
+        return LandingPage();
+      },
+    ),
+    GoRoute(
+      path: '/dashboard',
+      builder: (context, state) {
+        return Dashboard();
+      },
+    ),
+    GoRoute(
+      path: '/tests',
+      builder: (context, state) {
+        return Tests();
+      },
+    ),
     GoRoute(
       path: '/otp',
       builder: (context, state) {
-        return OTP();
+        final email = state.extra as String?;
+        final phone = state.extra as String?;
+        return OTP(email: email ?? '', phone: phone ?? '');
       },
     ),
     GoRoute(

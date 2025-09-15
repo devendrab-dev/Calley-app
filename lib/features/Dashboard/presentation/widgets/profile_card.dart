@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class ProfileCard extends StatelessWidget {
-  const ProfileCard({super.key});
+  const ProfileCard({super.key,required this.name});
+
+  final String name;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class ProfileCard extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Hello Swati", style: TextStyle(color: Colors.white)),
+              Text("Hello $name", style: TextStyle(color: Colors.white)),
               Text(
                 "Welcome to Calley!",
                 style: TextTheme.of(

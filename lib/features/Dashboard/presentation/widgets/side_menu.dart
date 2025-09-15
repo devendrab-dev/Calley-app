@@ -1,8 +1,11 @@
 import 'package:calley/features/Dashboard/presentation/widgets/menu_item.dart';
+import 'package:calley/features/authentication/data/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class SideMenu extends StatelessWidget {
-  const SideMenu({super.key});
+  const SideMenu({super.key, required this.user});
+
+  final UserModel user;
 
   @override
   Widget build(BuildContext context) {
@@ -26,9 +29,9 @@ class SideMenu extends StatelessWidget {
                     const SizedBox(width: 12),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
-                          "Swati  •  Personal",
+                          "${user.user.username} •  Personal",
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 16,
@@ -37,7 +40,7 @@ class SideMenu extends StatelessWidget {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "swati@cstech.in",
+                          user.user.email,
                           style: TextStyle(color: Colors.white70, fontSize: 14),
                         ),
                       ],

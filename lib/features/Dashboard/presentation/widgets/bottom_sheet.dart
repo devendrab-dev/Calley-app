@@ -1,4 +1,6 @@
+import 'package:calley/features/Dashboard/presentation/bloc/list_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 
 class CallingListBottomSheet extends StatelessWidget {
@@ -13,7 +15,7 @@ class CallingListBottomSheet extends StatelessWidget {
         color: const Color.fromRGBO(30, 51, 101, 1),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min, // 👈 shrink to fit content
+        mainAxisSize: MainAxisSize.min,
         children: [
           Padding(
             padding: const EdgeInsets.all(8),
@@ -36,7 +38,7 @@ class CallingListBottomSheet extends StatelessWidget {
               color: Colors.white,
             ),
             child: Column(
-              mainAxisSize: MainAxisSize.min, // 👈 keep compact
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Container(
                   padding: const EdgeInsets.all(10),
@@ -86,7 +88,10 @@ class CallingListBottomSheet extends StatelessWidget {
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                       GestureDetector(
-                        onTap: () => context.push("/tests"),
+                        onTap: () {
+                          BlocProvider.of<ListBloc>(context).add(Lists());
+                          context.push("/tests");
+                        },
                         child: Container(
                           padding: const EdgeInsets.all(8),
                           decoration: BoxDecoration(

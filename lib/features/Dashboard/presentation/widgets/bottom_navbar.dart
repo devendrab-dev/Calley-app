@@ -2,7 +2,9 @@ import 'package:calley/features/Dashboard/presentation/widgets/bottom_sheet.dart
 import 'package:flutter/material.dart';
 
 class BottomNavbar extends StatelessWidget {
-  const BottomNavbar({super.key});
+  const BottomNavbar({super.key, required this.id});
+
+  final String id;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +18,7 @@ class BottomNavbar extends StatelessWidget {
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
             ),
-            builder: (context) => const CallingListBottomSheet(),
+            builder: (context) => CallingListBottomSheet(),
           );
         }
       },
