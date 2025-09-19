@@ -6,8 +6,13 @@ class DataService {
 
   DataService(this.api);
 
-  Future<Response<dynamic>> list() async {
-    final response = await api.dio.get("/list/68626fb697757cb741f449b9");
+  Future<Response<dynamic>> list(String id) async {
+    final response = await api.dio.get("/list/$id");
+    return response;
+  }
+
+  Future<Response<dynamic>> getlist(String id) async {
+    final response = await api.dio.get("/list/?userId=$id");
     return response;
   }
 }

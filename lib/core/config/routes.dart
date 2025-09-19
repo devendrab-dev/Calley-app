@@ -7,6 +7,13 @@ import 'package:calley/features/authentication/presentation/pages/signup.dart';
 import 'package:calley/features/settings/presentation/pages/language.dart';
 import 'package:go_router/go_router.dart';
 
+class Detail {
+  final String email;
+  final String phone;
+
+  Detail({required this.email, required this.phone});
+}
+
 final GoRouter appRouter = GoRouter(
   initialLocation: '/language',
   routes: [
@@ -33,9 +40,8 @@ final GoRouter appRouter = GoRouter(
     GoRoute(
       path: '/otp',
       builder: (context, state) {
-        final email = state.extra as String?;
-        final phone = state.extra as String?;
-        return OTP(email: email ?? '', phone: phone ?? '');
+        final data = state.extra as Detail;
+        return OTP(email: data.email, phone: data.phone);
       },
     ),
     GoRoute(

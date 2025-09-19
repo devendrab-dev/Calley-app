@@ -1,5 +1,7 @@
+import 'package:calley/features/Dashboard/presentation/bloc/get_list_bloc.dart';
 import 'package:calley/features/Dashboard/presentation/widgets/bottom_sheet.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BottomNavbar extends StatelessWidget {
   const BottomNavbar({super.key, required this.id});
@@ -18,7 +20,14 @@ class BottomNavbar extends StatelessWidget {
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
             ),
-            builder: (context) => CallingListBottomSheet(),
+            builder: (context) => BlocBuilder<GetListBloc, GetListState>(
+              builder: (context, state) {
+                if(state is GetListSuccess) {
+                  return CallingListBottomSheet(id: state.model.sId);
+                }
+                return Container();
+              },
+            ),
           );
         }
       },

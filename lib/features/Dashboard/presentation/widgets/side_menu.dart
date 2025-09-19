@@ -1,6 +1,7 @@
 import 'package:calley/features/Dashboard/presentation/widgets/menu_item.dart';
 import 'package:calley/features/authentication/data/models/user_model.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SideMenu extends StatelessWidget {
   const SideMenu({super.key, required this.user});
@@ -84,7 +85,13 @@ class SideMenu extends StatelessWidget {
                 title: "Version 1.01.52",
               ),
               MenuItem(src: "assets/Icons/share.png", title: "Share App"),
-              MenuItem(src: "assets/Icons/image 64.png", title: "Logout"),
+              MenuItem(
+                onTap: () {
+                  context.go("/login");
+                },
+                src: "assets/Icons/image 64.png",
+                title: "Logout",
+              ),
             ],
           ),
         ),

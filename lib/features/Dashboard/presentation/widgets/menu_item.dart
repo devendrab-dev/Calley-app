@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 
 class MenuItem extends StatelessWidget {
-  const MenuItem({super.key, required this.src, required this.title});
+  const MenuItem({
+    super.key,
+    required this.src,
+    required this.title,
+    this.onTap,
+  });
 
   final String src;
   final String title;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: onTap,
       leading: Container(
         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
         decoration: BoxDecoration(
@@ -18,7 +25,6 @@ class MenuItem extends StatelessWidget {
         child: Image.asset(src),
       ),
       title: Text(title),
-      onTap: () {},
     );
   }
 }

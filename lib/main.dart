@@ -2,7 +2,8 @@ import 'package:calley/core/config/theme.dart';
 import 'package:calley/core/network/api_client.dart';
 import 'package:calley/features/Dashboard/data/data_repository.dart';
 import 'package:calley/features/Dashboard/data/services/data_service.dart';
-import 'package:calley/features/Dashboard/presentation/bloc/list_bloc.dart';
+import 'package:calley/features/Dashboard/presentation/bloc/get_list_bloc.dart';
+import 'package:calley/features/Dashboard/presentation/list_bloc/list_bloc.dart';
 import 'package:calley/features/authentication/data/auth_repository.dart';
 import 'package:calley/features/authentication/data/services/auth_service.dart';
 import 'package:calley/features/authentication/presentation/bloc/auth_bloc/auth_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/config/routes.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -33,6 +35,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               ListBloc(DataRepository(DataService(ApiClient()))),
+        ),
+        BlocProvider(
+          create: (context) =>
+              GetListBloc(DataRepository(DataService(ApiClient()))),
         ),
       ],
       child: MaterialApp.router(

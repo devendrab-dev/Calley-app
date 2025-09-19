@@ -1,3 +1,4 @@
+import 'package:calley/core/config/routes.dart';
 import 'package:calley/core/widgets/card.dart';
 import 'package:calley/core/widgets/app_button.dart';
 import 'package:calley/core/widgets/scaffold_message.dart';
@@ -206,6 +207,17 @@ class _SignUpState extends State<SignUp> {
                                 ),
                               );
                             }
+                            BlocProvider.of<AuthBloc>(
+                              context,
+                            ).add(OtpRequest(email.text.trim()));
+                            // Detail(email: email.text, phone: phone.text);
+                            context.go(
+                              "/otp",
+                              extra: Detail(
+                                email: email.text.trim(),
+                                phone: phone.text.trim(),
+                              ),
+                            );
                           },
                         ),
                       ],

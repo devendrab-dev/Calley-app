@@ -41,7 +41,7 @@ class _OTPState extends State<OTP> {
             }
             if (state is OtpVerifyS) {
               message(context, state.message, false);
-              context.go("/login");
+              context.go("/landing");
             }
             if (state is OtpVerifyF) {
               message(context, state.message, true);
@@ -66,7 +66,9 @@ class _OTPState extends State<OTP> {
                           children: [
                             Text(
                               "Welcome!",
-                              style: Theme.of(context).textTheme.headlineLarge,
+                              style: Theme.of(
+                                context,
+                              ).textTheme.headlineLarge,
                             ),
                             const SizedBox(height: 8),
                             const Text(
@@ -76,7 +78,8 @@ class _OTPState extends State<OTP> {
                             ),
                             const SizedBox(height: 20),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment:
+                                  MainAxisAlignment.spaceEvenly,
                               children: List.generate(
                                 6,
                                 (index) => SizedBox(
@@ -101,7 +104,9 @@ class _OTPState extends State<OTP> {
                                       filled: true,
                                       fillColor: Colors.grey.shade100,
                                       border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(
+                                          8,
+                                        ),
                                         borderSide: BorderSide(
                                           color: _hasError
                                               ? Colors.red
@@ -109,7 +114,9 @@ class _OTPState extends State<OTP> {
                                         ),
                                       ),
                                       enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(
+                                          8,
+                                        ),
                                         borderSide: BorderSide(
                                           color: _hasError
                                               ? Colors.red
@@ -117,7 +124,9 @@ class _OTPState extends State<OTP> {
                                         ),
                                       ),
                                       focusedBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
+                                        borderRadius: BorderRadius.circular(
+                                          8,
+                                        ),
                                         borderSide: BorderSide(
                                           color: _hasError
                                               ? Colors.red
@@ -184,7 +193,7 @@ class _OTPState extends State<OTP> {
                                 final otp = _otpControllers
                                     .map((c) => c.text)
                                     .join();
-
+          
                                 if (otp.length < 5) {
                                   setState(() {
                                     _hasError = true;

@@ -1,4 +1,5 @@
 import 'package:calley/core/widgets/app_button.dart';
+import 'package:calley/features/Dashboard/presentation/bloc/get_list_bloc.dart';
 import 'package:calley/features/Dashboard/presentation/widgets/app_bar.dart';
 import 'package:calley/features/Dashboard/presentation/widgets/profile_card.dart';
 import 'package:calley/features/Dashboard/presentation/widgets/side_menu.dart';
@@ -17,6 +18,9 @@ class LandingPage extends StatelessWidget {
     return BlocBuilder<LoginBloc, LoginState>(
       builder: (context, state) {
         if (state is LoginSuccess) {
+          BlocProvider.of<GetListBloc>(
+            context,
+          ).add(GetList(userId: state.user.user.sId));
           return Scaffold(
             drawer: SideMenu(user: state.user),
             appBar: appBar,

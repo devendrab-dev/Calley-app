@@ -14,10 +14,12 @@ class ListBloc extends Bloc<ListEvent, ListState> {
 
   Future<void> _onTestList(Lists event, Emitter<ListState> emit) async {
     emit(ListLoading());
-    final result = await repository.list();
+    final result = await repository.list(event.id);
     result.fold(
       (failure) => emit(ListFailed(failure.message)),
-      (user) => emit(ListSucess(user)),
+      (user) {
+        emit(ListSucess(user));
+      },
     );
   }
 }
